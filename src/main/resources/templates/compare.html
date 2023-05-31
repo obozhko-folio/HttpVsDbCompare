@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Http vs Query</title>
+    <link href="/css/compare.css" rel="stylesheet"/>
+</head>
+<body onload="updateRadio()">
+<div>
+    <h1 id="title">One by one comparison</h1>
+    <form>
+    <input type="radio" id="one-by-one" value="One-by-one" name="compare-type" checked onclick="changeCompareType(this)">
+    <label for="one-by-one">One by one</label><br>
+    <input type="radio" id="batch" name="compare-type" value="Batch" onclick="changeCompareType(this)">
+    <label for="batch">Batch</label><br><br>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Total time for HTTP Calls to mod-SRS (s)</th>
+            <th>Total time for SQL queries to DB view (s)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="left-align">
+                <select id="select-1">
+                    <option value="50">50 records</option>
+                    <option value="500">500 records</option>
+                    <option value="1000">1000 records</option>
+                    <option value="2000">2000 records</option>
+                    <option value="5000">5000 records</option>
+                    <option value="10000">10 000 records</option>
+                </select>
+            </td>
+            <td id="http_10k"></td>
+            <td id="db_10k"></td>
+        </tr>
+        <tr>
+            <td>
+                <select id="select-2">
+                    <option value="100">100 records</option>
+                    <option value="800">800 records</option>
+                    <option value="1000">1000 records</option>
+                    <option value="2000">2000 records</option>
+                    <option value="5000">5000 records</option>
+                    <option value="10000">10 000 records</option>
+                    <option value="20000">20 000 records</option>
+                    <option value="50000">50 000 records</option>
+                </select>
+            </td>
+            <td id="http_50k"></td>
+            <td id="db_50k"></td>
+        </tr>
+        <tr>
+            <td>
+                <select id="select-3">
+                    <option value="200">200 records</option>
+                    <option value="1000">1000 records</option>
+                    <option value="2000">2000 records</option>
+                    <option value="5000">5000 records</option>
+                    <option value="10000">10 000 records</option>
+                    <option value="50000">50 000 records</option>
+                    <option value="100000">100 000 records</option>
+                </select>
+            </td>
+            <td id="http_100k"></td>
+            <td id="db_100k"></td>
+        </tr>
+        <tr>
+            <td>
+                <select id="select-4">
+                    <option value="300">300 records</option>
+                    <option value="2000">2 000 records</option>
+                    <option value="5000">5 000 records</option>
+                    <option value="10000">10 000 records</option>
+                    <option value="50000">50 000 records</option>
+                    <option value="100000">100 000 records</option>
+                    <option value="200000">200 000 records</option>
+                    <option value="500000">500 000 records</option>
+                </select>
+            </td>
+            <td id="http_500k"></td>
+            <td id="db_500k"></td>
+        </tr>
+        <tr>
+            <td>
+                <select id="select-5">
+                    <option value="500">500 records</option>
+                    <option value="5000">5 000 records</option>
+                    <option value="8000">8 000 records</option>
+                    <option value="20000">20 000 records</option>
+                    <option value="50000">50 000 records</option>
+                    <option value="100000">100 000 records</option>
+                    <option value="500000">500 000 records</option>
+                    <option value="800000">800 000 records</option>
+                    <option value="1000000">1 000 000 records</option>
+                </select>
+            </td>
+            <td id="http_1m"></td>
+            <td id="db_1m"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div style="padding-top: 20px;">
+    <button type="button" value="Start" onclick="start()" id="start-btn" class="start-btn">Start</button>
+</div>
+<script src="/js/compare.js"></script>
+</body>
+
+</html>

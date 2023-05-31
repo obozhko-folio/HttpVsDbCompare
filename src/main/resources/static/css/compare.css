@@ -1,0 +1,27 @@
+.start-btn {
+    width: 11%;
+}
+
+th, td:nth-child(2), td:nth-child(3) {
+   text-align: center;
+}
+
+td:nth-child(1) {
+   text-align: right;
+}
+
+table {
+  border-collapse: collapse;
+  background-color: #f2f2f2;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+select {
+  width: 100%;
+}
+
