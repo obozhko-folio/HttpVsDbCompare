@@ -56,7 +56,9 @@ public class HttpClient {
 			HttpResponse response = client.execute(request);
 			String content = new String(response.getEntity().getContent().readAllBytes());
 			if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
-				throw new RuntimeException(tenant + " Failed to get instance: " + response.getStatusLine().getStatusCode() + "\n" + content);
+//				throw new RuntimeException(tenant + " Failed to get instance: " + response.getStatusLine().getStatusCode() + "\n" + content);
+    LOGGER.log(Level.SEVERE, tenant + " Failed to get instance: " + response.getStatusLine().getStatusCode() + "\n" + content);
+			 return "";
 			} else {
 				return new JSONObject(content).getJSONObject("parsedRecord").getJSONObject("content").toString();
 			}

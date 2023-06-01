@@ -1,7 +1,5 @@
 package org.perf.httpVsDbCompare.controller;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.http.HttpServletRequest;
 import org.perf.httpVsDbCompare.client.PgClient;
 import org.perf.httpVsDbCompare.service.DbService;
 import org.perf.httpVsDbCompare.service.HttpService;
@@ -20,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
-public class CompareController implements ErrorController {
+public class CompareController {
     
     private static final Logger LOGGER = Logger.getLogger(CompareController.class.getName());
     
@@ -59,12 +57,12 @@ public class CompareController implements ErrorController {
         return res;
     }
     
-    @RequestMapping("/error")
-    public String handleError(HttpServletRequest request, Model model) {
-        Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-        Object exception = request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
-        model.addAttribute("status", status);
-        model.addAttribute("exception", exception);
-        return "error";
-    }
+//    @RequestMapping("/error")
+//    public String handleError(HttpServletRequest request, Model model) {
+//        Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+//        Object exception = request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
+//        model.addAttribute("status", status);
+//        model.addAttribute("exception", exception);
+//        return "error";
+//    }
 }
