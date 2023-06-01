@@ -38,10 +38,8 @@ public class HttpService {
 		var ids = pgClient.getMarcIds(tenant, numRecords);
 		LOGGER.log(Level.INFO, "Started HTTP batch {0} records", numRecords);
 		long startTime = System.nanoTime();
-		for (var id : ids) {
-			var marc = httpClient.getMarcsByIds(ids);
-			LOGGER.log(Level.FINE, "Marc record batch: {0}", marc);
-		}
+		var marc = httpClient.getMarcsByIds(ids);
+		LOGGER.log(Level.FINE, "Marc record batch: {0}", marc);
 		var res = String.valueOf((System.nanoTime() - startTime) / 1_000_000_000);
 		LOGGER.log(Level.INFO, "Ended HTTP batch {0} records", numRecords);
 		return res;
