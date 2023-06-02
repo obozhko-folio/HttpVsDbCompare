@@ -70,7 +70,7 @@ public final class PgClient {
 			try (var conn = dataSource.getConnection();
 								Statement stmt = conn.createStatement();
 								ResultSet rs = stmt.executeQuery(
-																String.format("SELECT lb.id FROM %s_mod_source_record_storage.records_lb lb WHERE lb.record_type = 'MARC_BIB' AND lb.state = 'ACTUAL' LIMIT %d", tenantId, limit))) {
+																String.format("SELECT lb.id FROM %s_mod_source_record_storage.records_lb lb WHERE lb.record_type = 'MARC_BIB' AND lb.state = 'ACTUAL' AND lb.external_id is NOT NULL LIMIT %d", tenantId, limit))) {
 				while (rs.next()) {
 					var next = rs.getString(1);
 					res.add(next);
