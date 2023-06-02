@@ -42,6 +42,8 @@ public class CompareController {
         } else if (requestType.equals("http")) {
             res = httpService.estimate(numRecords);
         }
+        LOGGER.log(Level.INFO, "Result for one by one {0} records, {1} request: {2} seconds",
+                new Object[]{numRecords, requestType, res});
         return res;
     }
     
@@ -54,6 +56,8 @@ public class CompareController {
         } else if (requestType.equals("http")) {
             res = httpService.estimateBatch(numRecords);
         }
+        LOGGER.log(Level.INFO, "Result for batch {0} records, {1} request: {2} seconds",
+                new Object[]{numRecords, requestType, res});
         return res;
     }
     
