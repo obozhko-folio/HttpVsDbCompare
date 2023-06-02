@@ -38,11 +38,11 @@ public class ClientConfig {
 	@Value("${datasource.username}")
 	private String username;
 	
-	@Value("${datasource.sshusername}")
-	private String sshUsername;
+//	@Value("${datasource.sshusername}")
+//	private String sshUsername;
 	
-	@Value("${datasource.sshhost}")
-	private String sshHost;
+//	@Value("${datasource.sshhost}")
+//	private String sshHost;
 
 	@Value("${datasource.password}")
 	private String password;
