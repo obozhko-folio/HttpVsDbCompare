@@ -65,18 +65,20 @@ public class ClientConfig {
 	
 	@Bean
 	public DataSource dataSource() {
-		JSch jsch = new JSch();
+//		JSch jsch = new JSch();
 		try {
-			jsch.addIdentity(null, pkFile.getInputStream().readAllBytes(), null, null);
-			Session session = jsch.getSession(sshUsername, sshHost, 22);
-			session.setConfig("StrictHostKeyChecking", "no");
-			session.connect();
-			LOGGER.info("Connected to SSH session successfully.");
-			int port = session.setPortForwardingL(5433, host, dbPort);
+			// ssh
+//			jsch.addIdentity(null, pkFile.getInputStream().readAllBytes(), null, null);
+//			Session session = jsch.getSession(sshUsername, sshHost, 22);
+//			session.setConfig("StrictHostKeyChecking", "no");
+//			session.connect();
+//			LOGGER.info("Connected to SSH session successfully.");
+//			int port = session.setPortForwardingL(5433, host, dbPort);
 			
 			DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
 			dataSourceBuilder.driverClassName("org.postgresql.Driver");
-			dataSourceBuilder.url(String.format("jdbc:postgresql://localhost:%d/%s", 5433, dbname));
+//			dataSourceBuilder.url(String.format("jdbc:postgresql://localhost:%d/%s", 5433, dbname)); // ssh
+			dataSourceBuilder.url(String.format("jdbc:postgresql://%s:%d/%s", host, 5432, dbname));
 			dataSourceBuilder.username(username);
 			dataSourceBuilder.password(password);
 			return dataSourceBuilder.build();

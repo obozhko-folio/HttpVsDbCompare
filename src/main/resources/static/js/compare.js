@@ -4,21 +4,56 @@ function start() {
    clearResults();
    let req = getRequestType();
    console.log(req);
-   Promise.all([
-     startCompare("http_10k", req, Number(document.getElementById("select-1").value), "http"),
-     startCompare("db_10k", req, Number(document.getElementById("select-1").value), "db"),
-     startCompare("http_50k", req, Number(document.getElementById("select-2").value), "http"),
-     startCompare("db_50k", req, Number(document.getElementById("select-2").value), "db"),
-     startCompare("http_100k", req, Number(document.getElementById("select-3").value), "http"),
-     startCompare("db_100k", req, Number(document.getElementById("select-3").value), "db"),
-     startCompare("http_500k", req, Number(document.getElementById("select-4").value), "http"),
-     startCompare("db_500k", req, Number(document.getElementById("select-4").value), "db"),
-     startCompare("http_1m", req, Number(document.getElementById("select-5").value), "http"),
-     startCompare("db_1m", req, Number(document.getElementById("select-5").value), "db"),
-   ]).then(() => {
-     enableSelection(["select-1", "select-2", "select-3", "select-4", "select-5", "one-by-one", "batch"]);
-     enableStart("start-btn");
-   });
+//   Promise.all([
+//     startCompare("http_10k", req, Number(document.getElementById("select-1").value), "http");
+//     startCompare("db_10k", req, Number(document.getElementById("select-1").value), "db");
+//     startCompare("http_50k", req, Number(document.getElementById("select-2").value), "http");
+//     startCompare("db_50k", req, Number(document.getElementById("select-2").value), "db");
+//     startCompare("http_100k", req, Number(document.getElementById("select-3").value), "http");
+//     startCompare("db_100k", req, Number(document.getElementById("select-3").value), "db");
+//     startCompare("http_500k", req, Number(document.getElementById("select-4").value), "http");
+//     startCompare("db_500k", req, Number(document.getElementById("select-4").value), "db");
+//     startCompare("http_1m", req, Number(document.getElementById("select-5").value), "http");
+//     startCompare("db_1m", req, Number(document.getElementById("select-5").value), "db");
+//   ]).then(() => {
+//     enableSelection(["select-1", "select-2", "select-3", "select-4", "select-5", "one-by-one", "batch"]);
+//     enableStart("start-btn");
+//   });
+     Promise.resolve()
+        .then(function() {
+            return startCompare("http_10k", req, Number(document.getElementById("select-1").value), "http");
+        })
+        .then(function() {
+            return startCompare("db_10k", req, Number(document.getElementById("select-1").value), "db");
+        })
+        .then(function() {
+            return startCompare("http_50k", req, Number(document.getElementById("select-2").value), "http");
+        })
+        .then(function() {
+            return startCompare("db_50k", req, Number(document.getElementById("select-2").value), "db");
+        })
+        .then(function() {
+            return startCompare("http_100k", req, Number(document.getElementById("select-3").value), "http");
+        })
+        .then(function() {
+            return startCompare("db_100k", req, Number(document.getElementById("select-3").value), "db");
+        })
+        .then(function() {
+            return startCompare("http_500k", req, Number(document.getElementById("select-4").value), "http");
+        })
+        .then(function() {
+            return startCompare("db_500k", req, Number(document.getElementById("select-4").value), "db");
+        })
+        .then(function() {
+            return startCompare("http_1m", req, Number(document.getElementById("select-5").value), "http");
+        })
+        .then(function() {
+            return startCompare("db_1m", req, Number(document.getElementById("select-5").value), "db");
+        })
+        .then(function() {
+            enableSelection(["select-1", "select-2", "select-3", "select-4", "select-5", "one-by-one", "batch"]);
+            enableStart("start-btn");
+        });
 }
 
 function getRequestType() {
