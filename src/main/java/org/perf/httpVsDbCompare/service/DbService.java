@@ -11,6 +11,9 @@ public class DbService {
 	
 	private static final Logger LOGGER = Logger.getLogger(DbService.class.getName());
 	
+	@Value("${db.batch.size}")
+	private Integer batchSize;
+	
 	@Value("${tenant.id}")
 	private String tenantId;
 	
@@ -26,7 +29,7 @@ public class DbService {
 			LOGGER.log(Level.FINE, "Marc record: {0}", marc);
 		}
 		var res = String.valueOf((System.nanoTime() - startTime) / 1_000_000_000);
-		LOGGER.log(Level.INFO, "Ended DB {0} records with {1}", new Object[] {numRecords, res});
+		LOGGER.log(Level.INFO, "Ended DB {0} records", numRecords);
 		return res;
 	}
 	
@@ -34,12 +37,13 @@ public class DbService {
 		var ids = pgClient.getMarcIds(tenantId, numRecords);
 		LOGGER.log(Level.INFO, "Started DB batch {0} records", numRecords);
 		long startTime = System.nanoTime();
-		
-		var marc = pgClient.getMarcsByIds(tenantId, ids);
-		LOGGER.log(Level.FINE, "Marc records: {0}", marc);
-		
+		for (int i = 0; i < ids.size(); i += batchSize) {
+			var toIndex = i + batchSize;
+			var marc = pgClient.getMarcsByIds(tenantId, ids.subList(i, toIndex >= ids.size() ? ids.size() - 1 : toIndex));
+			LOGGER.log(Level.FINE, "Marc records: {0}", marc);
+		}
 		var res = String.valueOf((System.nanoTime() - startTime) / 1_000_000_000);
-		LOGGER.log(Level.INFO, "Ended DB batch {0} records with {1}", new Object[]{numRecords, res});
+		LOGGER.log(Level.INFO, "Ended DB batch {0} records", numRecords);
 		return res;
 	}
 }
